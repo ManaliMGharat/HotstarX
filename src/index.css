@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #030712;
+    --bg-surface: #070e1c;
+    --bg-surface-elevated: #0d1729;
+    --brand-primary: #FF5E3A;
+    --brand-sunset: #FF6B35;
+    --brand-amber: #F59E0B;
+    --brand-plum: #C026D3;
+    --brand-secondary: #E11D48;
+    --brand-accent: #9333EA;
+    --text-primary: #FFFFFF;
+    --text-muted: #94A3B8;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --ease-ott: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #030712;
+    background-image: 
+      radial-gradient(ellipse 110% 65% at 50% -8%, rgba(14, 42, 85, 0.42) 0%, rgba(7, 18, 38, 0.65) 45%, #030712 100%),
+      radial-gradient(circle 1050px at 85% 15%, rgba(14, 116, 233, 0.07) 0%, transparent 60%),
+      radial-gradient(circle 950px at 15% 45%, rgba(30, 58, 138, 0.09) 0%, transparent 60%),
+      radial-gradient(circle 1100px at 65% 78%, rgba(2, 132, 199, 0.05) 0%, transparent 65%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar in sleek midnight navy tones */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #030712;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #132038;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1e355b;
+  }
+}
+
+/* Hide scrollbar for horizontal rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Shimmer animation for skeleton loaders with warm amber undertone */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(56, 189, 248, 0.12) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Ken Burns slow zoom-out for Hero banner */
+@keyframes kenburnsZoom {
+  0% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.00);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburnsZoom 7.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+/* Slow-moving Abstract Ambient Light Keyframes */
+@keyframes sunsetDrift1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+  33% {
+    transform: translate3d(40px, -25px, 0) scale(1.08);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate3d(-30px, 20px, 0) scale(0.94);
+    opacity: 0.60;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+}
+
+@keyframes sunsetDrift2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  33% {
+    transform: translate3d(-45px, 30px, 0) scale(1.06);
+    opacity: 0.75;
+  }
+  66% {
+    transform: translate3d(35px, -20px, 0) scale(0.92);
+    opacity: 0.50;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes arcPulse {
+  0% {
+    opacity: 0.40;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.70;
+    transform: rotate(4deg) scale(1.04);
+  }
+  100% {
+    opacity: 0.40;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.animate-ambient-drift-1 {
+  animation: sunsetDrift1 26s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-ambient-drift-2 {
+  animation: sunsetDrift2 32s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-arc-pulse {
+  animation: arcPulse 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Glowing arc visual classes in oceanic cyan and deep cobalt */
+.glowing-arc-amber,
+.glowing-arc-cyan {
+  background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(14, 165, 233, 0.22) 0%, rgba(30, 58, 138, 0.12) 40%, transparent 80%);
+}
+
+.glowing-arc-plum,
+.glowing-arc-cobalt {
+  background: radial-gradient(ellipse 70% 40% at 50% 100%, rgba(37, 99, 235, 0.22) 0%, rgba(29, 78, 216, 0.12) 40%, transparent 80%);
+}
+
+/* Hero Staggered Text Animations */
+@keyframes heroSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-title {
+  animation: heroSlideUp 600ms cubic-bezier(0.22, 1, 0.36, 1) 0ms forwards;
+}
+
+.animate-hero-meta {
+  animation: heroSlideUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 90ms forwards;
+}
+
+.animate-hero-desc {
+  animation: heroSlideUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
+}
+
+.animate-hero-buttons {
+  animation: heroSlideUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 270ms forwards;
+}
+
+/* Modal Pop & Fade Animations */
+@keyframes modalEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-enter {
+  animation: modalEnter 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Page Transition animation */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Notification slide in */
+@keyframes notifSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-notif-slide {
+  animation: notifSlide 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Glassmorphism helpers with Deep Midnight-Blue & Cobalt Atmosphere */
+.glass-panel {
+  background: rgba(7, 15, 30, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(30, 58, 138, 0.08);
+}
+
+.glass-nav {
+  background: rgba(5, 12, 24, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.glass-sidebar {
+  background: rgba(4, 9, 20, 0.95);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-right: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 4px 0 28px rgba(0, 0, 0, 0.6);
+}
+
+/* Gradient text utility: Sunset Orange into Golden Amber and Radiant Plum */
+.gradient-hotstarx {
+  background: linear-gradient(135deg, #FF6B35 0%, #FFA23A 35%, #E040FB 75%, #9333EA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Premium Vignette for Hero with Deep Midnight Navy Tone */
+.hero-vignette {
+  box-shadow: inset 0 0 140px rgba(3, 7, 18, 0.96);
+}
+
+/* Ambient arena and stadium lighting in deep oceanic cobalt tones */
+.ambient-stadium {
+  background: radial-gradient(circle at 50% 20%, rgba(14, 116, 233, 0.18) 0%, rgba(30, 58, 138, 0.14) 40%, transparent 80%);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-kenburns,
+  .animate-ambient-drift-1,
+  .animate-ambient-drift-2,
+  .animate-arc-pulse {
+    animation: none !important;
+    transform: none !important;
+  }
+}
