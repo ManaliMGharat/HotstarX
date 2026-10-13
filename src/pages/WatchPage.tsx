@@ -50,7 +50,7 @@ export const WatchPage: React.FC = () => {
         </p>
         <button
           onClick={() => navigate('/')}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-lg shadow-cyan-500/25"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25"
         >
           <Compass className="w-4 h-4" />
           <span>Browse Catalog</span>
@@ -110,7 +110,7 @@ export const WatchPage: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <button
             onClick={() => openPlayer(media)}
-            className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-sm flex items-center gap-2.5 shadow-xl shadow-cyan-500/30 transition-all hover:scale-105 active:scale-95"
+            className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-600 to-fuchsia-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold text-sm flex items-center gap-2.5 shadow-xl shadow-cyan-500/25 transition-all hover:scale-105 active:scale-95"
           >
             <Play className="w-5 h-5 fill-current" />
             <span>{isPlayerOpen ? 'Return to Player' : 'Watch Now'}</span>

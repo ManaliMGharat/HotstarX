@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { PrimeXLogo } from '../brand/HotstarXLogo';
 import { Tv, Smartphone, Monitor, ShieldCheck, Sparkles } from 'lucide-react';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer: React.FC = () => {
   return (
     <footer className="mt-20 border-t border-cyan-500/15 bg-[#030712]/95 backdrop-blur-xl text-slate-400 select-none relative">
@@ -79,7 +81,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar with Powered by XQORA */}
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} PrimeX Media Network Inc. All rights reserved.</p>
+          <p>© {CURRENT_YEAR} PrimeX Media Network Inc. All rights reserved.</p>
           <div className="flex items-center gap-2 font-mono text-[11px] text-cyan-400/90">
             <span>Powered by XQORA</span>
             <span>•</span>

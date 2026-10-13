@@ -43,11 +43,11 @@ export const SeriesPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-2.5">
-            <Tv className="w-6 h-6 text-[#C026D3]" />
+            <Tv className="w-6 h-6 text-violet-400" />
             <h1 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-white">
               Series & Shows
             </h1>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-fuchsia-500/20 text-fuchsia-300 font-semibold border border-fuchsia-500/30">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-semibold border border-violet-500/30">
               {series.length} Series
             </span>
           </div>
@@ -60,7 +60,7 @@ export const SeriesPage: React.FC = () => {
                 onClick={() => setSelectedGenre(g)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all ${
                   selectedGenre === g
-                    ? 'bg-gradient-to-r from-fuchsia-600 via-purple-600 to-rose-600 text-white shadow-lg shadow-fuchsia-500/25 font-bold'
+                    ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-violet-500/25 font-bold'
                     : 'bg-white/5 text-stone-400 hover:text-white hover:bg-white/10 border border-white/5'
                 }`}
               >

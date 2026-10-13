@@ -15,7 +15,7 @@ export interface MediaCatalogEntry {
 }
 
 /**
- * Centralized Media Catalog for HotstarX
+ * Centralized Media Catalog for PrimeX
  *
  * Associates each playable item with its verified video source, media format,
  * semantic footage description, stream classification, and playback status.

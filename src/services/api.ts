@@ -1,5 +1,5 @@
-import { CATALOG, HERO_TITLES } from '../data/content';
-import { SUBSCRIPTION_PLANS } from '../data/plans';
+import { CATALOG, HERO_TITLES } from '../data/content.ts';
+import { SUBSCRIPTION_PLANS } from '../data/plans.ts';
 import type { ContentSection, MediaItem, SubscriptionPlan, UserProfile } from '../types';
 
 // Simulated latency helper
@@ -205,7 +205,7 @@ export const api = {
   },
 
   /**
-   * Fetch HotstarX Originals
+   * Fetch PrimeX Originals
    */
   async getOriginals(): Promise<{ featured: MediaItem; items: MediaItem[] }> {
     const originals = CATALOG.filter(item => item.isOriginal);

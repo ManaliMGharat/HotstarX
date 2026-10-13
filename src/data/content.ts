@@ -1,4 +1,4 @@
-import { MEDIA_CATALOG } from './mediaCatalog';
+import { MEDIA_CATALOG } from './mediaCatalog.ts';
 import type { MediaItem } from '../types';
 
 export const CATALOG: MediaItem[] = [

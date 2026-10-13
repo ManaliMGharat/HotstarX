@@ -41,7 +41,7 @@ export const MyListPage: React.FC = () => {
           <div className="space-y-3 pt-2">
             <button
               onClick={() => openAuthModal('signin')}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00C2FF] via-[#6366F1] to-[#A855F7] text-white font-bold text-sm shadow-lg shadow-[#00C2FF]/20 hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
             >
               <LogIn className="w-4 h-4" />
               <span>Sign In to View Watchlist</span>
@@ -88,7 +88,7 @@ export const MyListPage: React.FC = () => {
                     onClick={() => setFilter(tab)}
                     className={`px-3 py-1 text-xs font-semibold rounded-lg capitalize transition-all ${
                       filter === tab
-                        ? 'bg-[#00C2FF]/20 text-[#00C2FF] font-bold'
+                        ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
@@ -112,7 +112,7 @@ export const MyListPage: React.FC = () => {
         {filteredItems.length === 0 ? (
           <div className="py-20 text-center flex flex-col items-center justify-center space-y-4">
             <div className="w-16 h-16 rounded-3xl bg-[#0B1422] border border-white/10 flex items-center justify-center text-slate-500">
-              <Compass className="w-8 h-8 text-[#00C2FF]" />
+              <Compass className="w-8 h-8 text-cyan-400" />
             </div>
             <h2 className="text-xl font-bold text-white">Your Watchlist is empty</h2>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
@@ -121,7 +121,7 @@ export const MyListPage: React.FC = () => {
             <div className="flex items-center gap-3 pt-2">
               <Link
                 to="/movies"
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00C2FF] to-[#6366F1] text-white text-xs font-bold shadow-lg shadow-[#00C2FF]/20 hover:opacity-90 transition-opacity"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-xs font-bold shadow-lg shadow-cyan-500/20 hover:opacity-90 transition-opacity"
               >
                 Browse Movies
               </Link>
@@ -138,7 +138,7 @@ export const MyListPage: React.FC = () => {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="group relative rounded-2xl overflow-hidden bg-[#0B1422] border border-white/5 hover:border-[#00C2FF]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#00C2FF]/10 flex flex-col cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden bg-[#0B1422] border border-white/5 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col cursor-pointer"
                 onClick={() => openDetails(item)}
               >
                 <div className="aspect-[2/3] w-full relative overflow-hidden bg-slate-900">
@@ -170,7 +170,7 @@ export const MyListPage: React.FC = () => {
                         e.stopPropagation();
                         openPlayer(item);
                       }}
-                      className="p-3.5 rounded-full bg-white text-black shadow-xl hover:bg-[#00C2FF] hover:scale-110 active:scale-95 transition-all"
+                      className="p-3.5 rounded-full bg-white text-black shadow-xl hover:bg-cyan-400 hover:scale-110 active:scale-95 transition-all"
                     >
                       <Play className="w-5 h-5 fill-current ml-0.5" />
                     </button>
@@ -179,7 +179,7 @@ export const MyListPage: React.FC = () => {
 
                 <div className="p-3 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-white truncate group-hover:text-[#00C2FF] transition-colors">
+                    <h3 className="text-sm font-bold text-white truncate group-hover:text-cyan-400 transition-colors">
                       {item.title}
                     </h3>
                     <div className="flex items-center gap-1.5 text-[11px] text-slate-400 mt-0.5">

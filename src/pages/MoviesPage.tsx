@@ -45,11 +45,11 @@ export const MoviesPage: React.FC = () => {
         {/* Page Title & Genre Pills */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-2.5">
-            <Film className="w-6 h-6 text-[#FF5E3A]" />
+            <Film className="w-6 h-6 text-cyan-400" />
             <h1 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-white">
               Movies
             </h1>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-300 font-semibold border border-orange-500/30">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">
               {movies.length} Titles
             </span>
           </div>
@@ -62,7 +62,7 @@ export const MoviesPage: React.FC = () => {
                 onClick={() => setSelectedGenre(g)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all ${
                   selectedGenre === g
-                    ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-rose-600 text-white shadow-lg shadow-orange-500/25 font-bold'
+                    ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/25 font-bold'
                     : 'bg-white/5 text-stone-400 hover:text-white hover:bg-white/10 border border-white/5'
                 }`}
               >

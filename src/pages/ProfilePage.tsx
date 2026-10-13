@@ -507,7 +507,7 @@ export const ProfilePage: React.FC = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full max-w-md bg-[#050B14] text-white text-sm px-4 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-[#00C2FF]"
+                className="w-full max-w-md bg-[#050B14] text-white text-sm px-4 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400"
               />
             </div>
 
@@ -524,7 +524,7 @@ export const ProfilePage: React.FC = () => {
                     onClick={() => setQuality(q as any)}
                     className={`py-2 px-3 text-xs font-semibold rounded-xl border transition-all ${
                       quality === q
-                        ? 'border-[#00C2FF] bg-[#00C2FF]/20 text-white'
+                        ? 'border-cyan-400 bg-cyan-500/20 text-white'
                         : 'border-white/5 bg-[#050B14] text-slate-400 hover:text-white'
                     }`}
                   >
@@ -542,7 +542,7 @@ export const ProfilePage: React.FC = () => {
               <select
                 value={audioLang}
                 onChange={(e) => setAudioLang(e.target.value)}
-                className="w-full max-w-md bg-[#050B14] text-white text-sm px-4 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-[#00C2FF]"
+                className="w-full max-w-md bg-[#050B14] text-white text-sm px-4 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400"
               >
                 <option value="English">English</option>
                 <option value="Hindi">Hindi (हिंदी)</option>
@@ -563,7 +563,7 @@ export const ProfilePage: React.FC = () => {
                 type="checkbox"
                 checked={subtitles}
                 onChange={(e) => setSubtitles(e.target.checked)}
-                className="w-5 h-5 accent-[#00C2FF] rounded cursor-pointer"
+                className="w-5 h-5 accent-cyan-400 rounded cursor-pointer"
               />
             </div>
 
@@ -577,7 +577,7 @@ export const ProfilePage: React.FC = () => {
                 type="checkbox"
                 checked={notifications}
                 onChange={(e) => setNotifications(e.target.checked)}
-                className="w-5 h-5 accent-[#00C2FF] rounded cursor-pointer"
+                className="w-5 h-5 accent-cyan-400 rounded cursor-pointer"
               />
             </div>
 
@@ -586,7 +586,7 @@ export const ProfilePage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleSave}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#00C2FF] via-[#6366F1] to-[#A855F7] text-white font-black text-sm shadow-lg shadow-[#00C2FF]/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-black text-sm shadow-lg shadow-cyan-500/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 Save Profile & Avatar
               </button>

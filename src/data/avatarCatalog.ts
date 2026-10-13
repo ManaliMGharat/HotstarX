@@ -30,7 +30,7 @@ const SVG_NEUTRAL_1 = `
   <circle cx="60" cy="60" r="58" fill="url(#bgGradN1)" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.4"/>
   <!-- Outer glowing ring -->
   <circle cx="60" cy="60" r="48" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 4" stroke-opacity="0.6"/>
-  <!-- HotstarX CineStar Emblem -->
+  <!-- PrimeX CineStar Emblem -->
   <path d="M60 22 L68 48 L94 52 L74 70 L80 96 L60 82 L40 96 L46 70 L26 52 L52 48 Z" fill="url(#starGradN1)" filter="url(#glowN1)"/>
   <circle cx="60" cy="60" r="9" fill="#ffffff" opacity="0.95"/>
   <circle cx="60" cy="60" r="5" fill="#0284c7"/>
