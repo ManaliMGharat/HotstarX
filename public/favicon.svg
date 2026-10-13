@@ -1,28 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="hx-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00e5ff"/>
-      <stop offset="50%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#8b5cf6"/>
+    <!-- Electric Cyan to Violet Gradient for PrimeX Emblem -->
+    <linearGradient id="px-grad-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="55%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
     </linearGradient>
-    <linearGradient id="hx-accent" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#00f2fe"/>
+    <linearGradient id="px-grad-right" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="60%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#00F2FE"/>
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2" result="blur" />
+    <radialGradient id="px-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#67E8F9"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="px-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
-  <!-- Background badge -->
-  <rect width="48" height="48" rx="12" fill="#06101c"/>
-  <rect width="46" height="46" x="1" y="1" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-  
-  <!-- Geometric Play-Prism Star / Hex / X Emblem -->
-  <!-- Left dynamic chevron wing -->
-  <path d="M12 11L25 24L12 37L17 37L29 25.5L29 22.5L17 11H12Z" fill="url(#hx-grad)" filter="url(#glow)"/>
-  <!-- Right sleek intersecting chevron wing forming the X -->
-  <path d="M36 11L23 24L36 37L31 37L19 25.5L19 22.5L31 11H36Z" fill="url(#hx-accent)" opacity="0.9"/>
-  <!-- Core energy node -->
-  <circle cx="24" cy="24" r="3.5" fill="#ffffff" />
+
+  <!-- Deep Midnight Navy Icon Base -->
+  <rect width="64" height="64" rx="16" fill="#030712"/>
+  <rect width="62" height="62" x="1" y="1" rx="15" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+
+  <!-- Distinctive PrimeX Cinematic Emblem (Dynamic Intersecting Hyper-Wings) -->
+  <!-- Left Wing -->
+  <path
+    d="M15 14L32 32L15 50L22 50L40 33.5L40 30.5L22 14H15Z"
+    fill="url(#px-grad-left)"
+    filter="url(#px-glow)"
+  />
+  <!-- Right Wing -->
+  <path
+    d="M49 14L32 32L49 50L42 50L24 33.5L24 30.5L42 14H49Z"
+    fill="url(#px-grad-right)"
+    opacity="0.95"
+  />
+
+  <!-- Core Radiant Energy Node -->
+  <circle cx="32" cy="32" r="4.5" fill="url(#px-core)"/>
 </svg>

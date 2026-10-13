@@ -33,18 +33,18 @@ export const LivePage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         
         {/* Notice of Authenticity & Demo Stream Clarity */}
-        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-orange-950/40 border border-orange-500/25 text-amber-200 text-xs mb-6 backdrop-blur-md">
-          <Info className="w-4 h-4 shrink-0 text-amber-400" />
+        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-cyan-950/40 border border-cyan-500/25 text-cyan-200 text-xs mb-6 backdrop-blur-md">
+          <Info className="w-4 h-4 shrink-0 text-cyan-400" />
           <span>
-            <strong>HotstarX Arena Broadcast Notice:</strong> Live sport events feature simulated real-time telemetry and licensed high-definition demo footage for evaluation.
+            <strong>PrimeX Arena Broadcast Notice:</strong> Live sport events feature simulated real-time telemetry and licensed high-definition demo footage for evaluation.
           </span>
         </div>
 
         {/* Live Broadcast Hero Banner with Arena Atmosphere */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0b1120] via-[#111827] to-[#030712] border border-white/10 p-6 sm:p-10 mb-8 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#070e1c] via-[#0d1627] to-[#030712] border border-white/10 p-6 sm:p-10 mb-8 shadow-2xl">
           {/* Subtle floodlight beam effect in oceanic blue */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
@@ -56,7 +56,7 @@ export const LivePage: React.FC = () => {
                 <span className="text-rose-400 text-xs font-black uppercase tracking-wider">
                   LIVE ARENA BROADCAST CENTER
                 </span>
-                <span className="text-amber-400 text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 font-bold uppercase">
+                <span className="text-cyan-400 text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-500/30 font-bold uppercase">
                   SIMULATED 4K DEMO
                 </span>
               </div>
@@ -73,7 +73,7 @@ export const LivePage: React.FC = () => {
               <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <button
                   onClick={() => openPlayer(topLiveEvent)}
-                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-600 via-rose-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-xl shadow-orange-600/30 transition-all hover:scale-105 active:scale-95"
+                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-xl shadow-cyan-500/25 transition-all hover:scale-105 active:scale-95"
                 >
                   <Radio className="w-4 h-4 animate-pulse" />
                   <span>Watch Featured Demo ({topLiveEvent.sportsDetails?.sport || 'Sports'})</span>
@@ -90,13 +90,13 @@ export const LivePage: React.FC = () => {
                 onClick={() => setSelectedSport(sport)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold shrink-0 transition-all flex items-center gap-1.5 ${
                   selectedSport === sport
-                    ? 'bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white shadow-lg shadow-orange-500/25 font-black'
+                    ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/25 font-black'
                     : 'bg-white/5 hover:bg-white/10 text-stone-300 border border-white/10'
                 }`}
               >
-                {sport === 'All' && <Flame className="w-3.5 h-3.5 text-amber-400" />}
-                {sport === 'Cricket' && <Trophy className="w-3.5 h-3.5 text-orange-400" />}
-                {sport === 'Motorsport' && <Activity className="w-3.5 h-3.5 text-rose-400" />}
+                {sport === 'All' && <Flame className="w-3.5 h-3.5 text-cyan-400" />}
+                {sport === 'Cricket' && <Trophy className="w-3.5 h-3.5 text-cyan-400" />}
+                {sport === 'Motorsport' && <Activity className="w-3.5 h-3.5 text-violet-400" />}
                 {sport === 'Football' && <Tv className="w-3.5 h-3.5 text-amber-400" />}
                 <span>{sport}</span>
               </button>

@@ -70,7 +70,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenSearch }
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#030712]/96 backdrop-blur-2xl border-t border-white/10 px-2 py-1.5 safe-area-pb"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#030712]/96 backdrop-blur-2xl border-t border-cyan-500/15 px-2 py-1.5 safe-area-pb"
       aria-label="Mobile Bottom Navigation"
     >
       <div className="flex items-center justify-around max-w-md mx-auto">
@@ -82,7 +82,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenSearch }
             <div className="flex flex-col items-center justify-center py-1 px-2 relative min-w-[50px]">
               {/* Active Glow Indicator */}
               {active && (
-                <span className="absolute -top-1 w-6 h-0.5 rounded-full bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] shadow-[0_0_8px_rgba(255,94,58,0.8)]" />
+                <span className="absolute -top-1 w-6 h-0.5 rounded-full bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
               )}
 
               <div className="relative">
@@ -90,18 +90,18 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenSearch }
                   <UserAvatar
                     profile={currentProfile}
                     size="xs"
-                    ringClass="ring-2 ring-[#FF5E3A]"
+                    ringClass="ring-2 ring-cyan-400"
                   />
                 ) : (
                   <Icon
                     className={`w-5 h-5 transition-transform duration-200 ${
-                      active ? 'text-[#FF5E3A] scale-110' : 'text-stone-400'
+                      active ? 'text-cyan-400 scale-110' : 'text-slate-400'
                     }`}
                   />
                 )}
 
                 {item.badge !== undefined && (
-                  <span className="absolute -top-1 -right-2 px-1 text-[9px] font-black rounded-full bg-[#FF5E3A] text-white">
+                  <span className="absolute -top-1 -right-2 px-1 text-[9px] font-black rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 text-black">
                     {item.badge}
                   </span>
                 )}
@@ -109,7 +109,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenSearch }
 
               <span
                 className={`text-[10px] mt-1 tracking-tight transition-colors ${
-                  active ? 'text-white font-bold' : 'text-stone-400 font-medium'
+                  active ? 'text-white font-bold' : 'text-slate-400 font-medium'
                 }`}
               >
                 {item.label}

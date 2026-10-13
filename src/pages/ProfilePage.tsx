@@ -143,9 +143,9 @@ export const ProfilePage: React.FC = () => {
             <UserIcon className="w-8 h-8" />
           </div>
           <div>
-            <h1 className="text-2xl font-black font-['Outfit'] text-white">Sign In to HotstarX</h1>
+            <h1 className="text-2xl font-black font-['Outfit'] text-white">Sign In to PrimeX</h1>
             <p className="text-sm text-slate-400 mt-2 leading-relaxed">
-              Sign in or create an account to view and customize your personal space, manage subscription plans, and configure streaming preferences.
+              Sign in or create an account to view and customize your personal space, manage subscription plans, and configure streaming preferences. Powered by XQORA.
             </p>
           </div>
           <div className="space-y-3 pt-2">
@@ -273,7 +273,7 @@ export const ProfilePage: React.FC = () => {
               <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
                 Avatar Persona & Gender Preference
               </label>
-              <div className="flex items-center gap-1 text-[11px] text-slate-400" title="HotstarX respects your privacy. Gender preference is used only to select your default avatar persona and is never inferred from your username or email.">
+              <div className="flex items-center gap-1 text-[11px] text-slate-400" title="PrimeX respects your privacy. Gender preference is used only to select your default avatar persona and is never inferred from your username or email.">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Explicit choice (never guessed)</span>
               </div>
@@ -605,7 +605,7 @@ export const ProfilePage: React.FC = () => {
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 text-xs font-semibold transition-colors"
           >
             <LogOut className="w-4 h-4" />
-            <span>Sign Out of HotstarX</span>
+            <span>Sign Out of PrimeX</span>
           </button>
         </div>
       </div>

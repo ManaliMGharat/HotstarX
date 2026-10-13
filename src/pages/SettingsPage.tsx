@@ -86,7 +86,7 @@ export const SettingsPage: React.FC = () => {
   };
 
   const handleAppReset = () => {
-    if (window.confirm('Reset HotstarX App Data? This clears all local browsing state and returns the app to a fresh developer state.')) {
+    if (window.confirm('Reset PrimeX App Data? This clears all local browsing state and returns the app to a fresh developer state.')) {
       resetHotstarXAppData();
     }
   };
@@ -286,8 +286,8 @@ export const SettingsPage: React.FC = () => {
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-semibold transition-colors"
               title="Reset application to clean developer state"
             >
-              <RotateCcw className="w-4 h-4 text-[#00C2FF]" />
-              <span>Reset HotstarX App Data</span>
+              <RotateCcw className="w-4 h-4 text-cyan-400" />
+              <span>Reset PrimeX App Data</span>
             </button>
           </div>
         </div>
@@ -312,10 +312,10 @@ export const SettingsPage: React.FC = () => {
           ) : (
             <button
               onClick={() => openAuthModal('signin')}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#00C2FF] hover:underline transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-cyan-400 hover:underline transition-colors"
             >
               <LogIn className="w-4 h-4" />
-              <span>Sign In to HotstarX</span>
+              <span>Sign In to PrimeX</span>
             </button>
           )}
         </div>

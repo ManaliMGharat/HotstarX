@@ -55,7 +55,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Stream on 4 screens at the same time',
       'Unlimited offline downloads',
       '100% ad-free experience (including sports)',
-      'Early access to HotstarX Original premiere cuts',
+      'Early access to PrimeX Original premiere cuts',
       'VIP Priority live sports multi-cam angles'
     ]
   }

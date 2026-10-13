@@ -51,9 +51,9 @@ export const SportsPage: React.FC = () => {
         {/* Page Banner Header */}
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0b1120] via-[#111827] to-[#030712] border border-white/10 p-6 sm:p-10 mb-8 shadow-2xl">
           <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
-              <Trophy className="w-4 h-4" />
-              <span>HotstarX Sports Arena</span>
+            <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+              <Trophy className="w-4 h-4 text-cyan-400" />
+              <span>PrimeX Sports Arena</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black font-['Outfit'] text-white tracking-tight">
               Live Sports & Tournaments

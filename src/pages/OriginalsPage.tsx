@@ -24,15 +24,15 @@ export const OriginalsPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
+            <div className="p-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-violet-500/20">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
               <h1 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-white">
-                HotstarX Originals
+                PrimeX Originals
               </h1>
               <p className="text-xs sm:text-sm text-slate-400">
-                Groundbreaking prestige storytelling exclusive to HotstarX
+                Groundbreaking prestige storytelling exclusive to PrimeX
               </p>
             </div>
           </div>

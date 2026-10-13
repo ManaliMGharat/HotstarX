@@ -27,7 +27,7 @@ export const PlansPage: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-bold border border-cyan-500/20">
             <Crown className="w-3.5 h-3.5" />
-            <span>HotstarX VIP Pass</span>
+            <span>PrimeX VIP Pass</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black font-['Outfit'] text-white tracking-tight">

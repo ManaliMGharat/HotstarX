@@ -155,13 +155,13 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
           {/* Row 1: Badges & Content Certifications */}
           <div className="animate-hero-meta flex flex-wrap items-center gap-2 overflow-visible">
             {activeItem.isOriginal && (
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-black uppercase tracking-wider bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white shadow-lg shadow-orange-500/30 shrink-0">
-                <Sparkles className="w-3 h-3 text-amber-200" />
-                HOTSTARX ORIGINAL
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-black uppercase tracking-wider bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] text-black shadow-lg shadow-cyan-500/30 shrink-0">
+                <Sparkles className="w-3 h-3 text-black" />
+                PRIMEX ORIGINAL
               </span>
             )}
             {activeItem.topRank && (
-              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0">
                 #{activeItem.topRank} IN INDIA TODAY
               </span>
             )}
@@ -191,7 +191,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
 
           {/* Row 4: Clean Classification Row (Languages & Genres Separated) */}
           <div className="animate-hero-meta flex flex-wrap items-center gap-2 text-xs text-stone-300">
-            <span className="text-amber-400 font-semibold">Languages:</span>
+            <span className="text-cyan-400 font-semibold">Languages:</span>
             <span className="text-stone-200">{activeItem.language.join(', ')}</span>
             <span className="text-stone-500 mx-1">•</span>
             <span className="text-stone-400 font-medium">{activeItem.genre.join(', ')}</span>
@@ -207,10 +207,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
             {/* Watch Now CTA Button */}
             <button
               onClick={() => openPlayer(activeItem)}
-              className="group/cta px-6 sm:px-8 py-3 rounded-xl bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white font-black text-sm sm:text-base flex items-center gap-2.5 transition-all duration-300 shadow-[0_0_30px_rgba(255,94,58,0.45)] hover:shadow-[0_0_40px_rgba(255,94,58,0.65)] hover:scale-[1.03] hover:brightness-110 active:scale-[0.98]"
+              className="group/cta px-6 sm:px-8 py-3 rounded-xl bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] text-black font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all duration-300 shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:shadow-[0_0_40px_rgba(6,182,212,0.65)] hover:scale-[1.03] hover:brightness-110 active:scale-[0.98]"
             >
               <Play className="w-5 h-5 fill-current transition-transform duration-300 group-hover/cta:translate-x-[3px]" />
-              <span className="tracking-wide">{t('watchNow', 'WATCH NOW')}</span>
+              <span className="tracking-wide">{t('watchNow', 'PLAY NOW')}</span>
             </button>
 
             {/* Add to My List */}
@@ -218,23 +218,23 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
               onClick={() => toggleWatchlist(activeItem)}
               className={`px-5 py-3 rounded-xl border backdrop-blur-md text-sm sm:text-base font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${
                 inList
-                  ? 'bg-[#FF5E3A]/20 border-[#FF5E3A] text-[#FF5E3A] shadow-[0_0_20px_rgba(255,94,58,0.25)]'
+                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.25)]'
                   : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
               }`}
             >
-              {inList ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-              <span>{inList ? t('inList', 'IN LIST') : t('addToList', 'ADD TO MY LIST')}</span>
+              {inList ? <Check className="w-5 h-5 text-cyan-300" /> : <Plus className="w-5 h-5" />}
+              <span>{inList ? t('inList', 'IN WATCHLIST') : t('addToList', 'ADD TO WATCHLIST')}</span>
             </button>
 
             {/* More Information */}
             <button
               onClick={() => openDetails(activeItem)}
-              className="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-stone-200 hover:text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] flex items-center gap-2"
+              className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-cyan-400/50 text-stone-200 hover:text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] flex items-center gap-2"
               aria-label={t('moreInfo', 'More Information')}
               title={t('moreInfo', 'More Info')}
             >
-              <Info className="w-5 h-5 shrink-0" />
-              <span className="hidden sm:inline font-semibold text-sm">{t('moreInfo', 'More Info')}</span>
+              <Info className="w-5 h-5 shrink-0 text-cyan-400" />
+              <span className="font-semibold text-sm">{t('moreInfo', 'More Info')}</span>
             </button>
 
             {/* Audio Ambient Mute Toggle */}
@@ -311,7 +311,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
                 {isCurrent && (
                   <div className="absolute bottom-0 inset-x-0 h-0.5 bg-white/30 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] transition-all duration-75"
+                      className="h-full bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] transition-all duration-75"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
@@ -324,7 +324,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
         {/* Tablet & Mid-Size Screens (sm: to lg: 640px - 1279px): Compact Glass Capsule Controls */}
         <div className="hidden sm:flex xl:hidden items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-xl">
           <div className="flex items-center gap-1 text-[11px] font-mono font-bold text-stone-300 shrink-0">
-            <span className="text-[#FF5E3A]">0{currentIndex + 1}</span>
+            <span className="text-cyan-400">0{currentIndex + 1}</span>
             <span className="text-stone-500">/</span>
             <span>0{Math.min(items.length, 5)}</span>
           </div>
@@ -343,7 +343,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
                   <div className="absolute inset-0 bg-white/30" />
                   {isCurrent && (
                     <div
-                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] rounded-full"
+                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] rounded-full"
                       style={{ width: `${progress}%` }}
                     />
                   )}
@@ -385,7 +385,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ items }) => {
                 <div className="absolute inset-0 bg-white/30" />
                 {isCurrent && (
                   <div
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] rounded-full"
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] rounded-full"
                     style={{ width: `${progress}%` }}
                   />
                 )}

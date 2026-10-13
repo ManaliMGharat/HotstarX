@@ -12,7 +12,7 @@ import {
   Crown,
   Settings
 } from 'lucide-react';
-import { HotstarXLogo } from '../brand/HotstarXLogo';
+import { PrimeXLogo } from '../brand/HotstarXLogo';
 import { useWatchlist } from '../../context/WatchlistContext';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -109,36 +109,36 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
         onMouseLeave={() => setIsHovered(false)}
         className={`hidden lg:flex fixed top-0 left-0 bottom-0 z-50 flex-col justify-between py-5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] select-none ${
           isHovered
-            ? 'w-[230px] bg-[#030712]/98 backdrop-blur-2xl border-r border-white/10 shadow-[16px_0_48px_rgba(0,0,0,0.9)]'
+            ? 'w-[230px] bg-[#030712]/98 backdrop-blur-2xl border-r border-cyan-500/20 shadow-[16px_0_48px_rgba(0,0,0,0.9),0_0_30px_rgba(6,182,212,0.1)]'
             : 'w-[76px] bg-[#030712]/90 backdrop-blur-xl border-r border-white/5 shadow-2xl'
         }`}
         aria-label="Sidebar Navigation"
       >
-        {/* Top: HotstarX Emblem + Subscribe Pill */}
+        {/* Top: PrimeX Emblem + Subscribe Pill */}
         <div className="px-4 flex flex-col gap-3">
           <div className="flex items-center h-12 overflow-hidden px-1">
             <NavLink
               to="/"
               className="flex items-center gap-3.5 focus:outline-none group/logo"
-              aria-label="HotstarX Home"
+              aria-label="PrimeX Home"
             >
               <div className="shrink-0">
-                <HotstarXLogo size="md" hideWordmark={!isHovered} clickable={false} />
+                <PrimeXLogo size="md" hideWordmark={!isHovered} clickable={false} />
               </div>
             </NavLink>
           </div>
 
-          {/* JioHotstar-Style "Subscribe" Pill */}
+          {/* Premium "Subscribe" Pill */}
           <button
             onClick={() => navigate('/plans')}
             className={`flex items-center justify-center gap-2 rounded-full py-2 px-3 text-xs font-black tracking-wide transition-all duration-300 shadow-md ${
               isHovered
-                ? 'bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white hover:brightness-110 shadow-orange-500/25'
-                : 'bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30'
+                ? 'bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] text-black hover:brightness-110 shadow-cyan-500/25'
+                : 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25'
             }`}
-            title="Subscribe to HotstarX"
+            title="Subscribe to PrimeX"
           >
-            <Crown className="w-3.5 h-3.5 shrink-0 fill-current text-amber-300" />
+            <Crown className="w-3.5 h-3.5 shrink-0 fill-current text-cyan-300" />
             <span
               className={`whitespace-nowrap transition-all duration-300 ${
                 isHovered ? 'opacity-100 max-w-[120px]' : 'opacity-0 max-w-0 overflow-hidden'
@@ -159,13 +159,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
               <div
                 className={`relative flex items-center h-11 px-3 rounded-xl transition-all duration-200 group ${
                   active
-                    ? 'bg-gradient-to-r from-[#FF5E3A]/20 via-[#F59E0B]/15 to-[#C026D3]/10 text-white font-bold'
-                    : 'text-stone-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-gradient-to-r from-cyan-500/20 via-sky-500/15 to-violet-500/10 text-white font-bold'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {/* Active Indicator Bar */}
                 {active && (
-                  <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-gradient-to-b from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] shadow-[0_0_8px_rgba(255,94,58,0.8)]" />
+                  <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-gradient-to-b from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                 )}
 
                 {/* Icon */}
@@ -173,9 +173,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
                   <Icon
                     className={`w-5 h-5 transition-colors ${
                       active
-                        ? 'text-[#FF5E3A]'
+                        ? 'text-cyan-400'
                         : item.isOriginal
-                        ? 'text-fuchsia-400 group-hover:text-fuchsia-300'
+                        ? 'text-violet-400 group-hover:text-violet-300'
                         : 'group-hover:text-white'
                     }`}
                   />
@@ -211,7 +211,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
                       isHovered ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
-                    <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-white/10 text-[#FF5E3A]">
+                    <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                       {item.badge}
                     </span>
                   </span>
@@ -224,7 +224,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
                 <button
                   key={item.id}
                   onClick={item.action}
-                  className="w-full text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF5E3A] rounded-xl"
+                  className="w-full text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-xl"
                   title={!isHovered ? item.label : undefined}
                 >
                   {content}
@@ -236,7 +236,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
               <NavLink
                 key={item.id}
                 to={item.path!}
-                className="w-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF5E3A] rounded-xl"
+                className="w-full focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-xl"
                 title={!isHovered ? item.label : undefined}
               >
                 {content}
@@ -251,13 +251,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
           {isHovered && (
             <button
               onClick={() => navigate('/plans')}
-              className="w-full mb-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white text-xs font-bold flex items-center justify-between shadow-lg shadow-orange-500/20 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all animate-in fade-in duration-200"
+              className="w-full mb-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] text-black text-xs font-black flex items-center justify-between shadow-lg shadow-cyan-500/20 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all animate-in fade-in duration-200"
             >
               <span className="flex items-center gap-1.5">
                 <Crown className="w-3.5 h-3.5 fill-current" />
                 <span>Upgrade Plan</span>
               </span>
-              <span className="text-[10px] opacity-80">₹199/m</span>
+              <span className="text-[10px] opacity-90 font-mono">₹199/m</span>
             </button>
           )}
 
@@ -267,8 +267,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
             className={({ isActive }) =>
               `w-full flex items-center h-11 px-3 rounded-xl transition-all ${
                 isActive
-                  ? 'bg-gradient-to-r from-[#FF5E3A]/20 via-[#F59E0B]/15 to-[#C026D3]/10 text-white font-bold'
-                  : 'text-stone-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-gradient-to-r from-cyan-500/20 via-sky-500/15 to-violet-500/10 text-white font-bold'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`
             }
             title={!isHovered ? t('settings', 'Settings') : undefined}
@@ -286,6 +286,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSearch }) => {
               {t('settings', 'Settings')}
             </span>
           </NavLink>
+
+          {/* Powered by XQORA badge when hovered */}
+          {isHovered && (
+            <div className="pt-2 text-center text-[10px] text-cyan-400/80 font-mono tracking-wider animate-in fade-in">
+              POWERED BY XQORA
+            </div>
+          )}
         </div>
       </aside>
     </>

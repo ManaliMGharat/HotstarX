@@ -129,7 +129,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
       <div className="border-b border-white/10 px-4 sm:px-8 py-5">
         <div className="max-w-5xl mx-auto flex items-center gap-3">
           <div className="relative flex-1 flex items-center">
-            <Search className="absolute left-4 w-6 h-6 text-[#FF5E3A] pointer-events-none" />
+            <Search className="absolute left-4 w-6 h-6 text-cyan-400 pointer-events-none" />
             <input
               ref={inputRef}
               type="text"
@@ -137,7 +137,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search movies, shows, sports, creators..."
-              className="w-full bg-[#0b1120] text-white placeholder-stone-400 text-lg sm:text-xl pl-14 pr-12 py-3.5 rounded-2xl border border-white/15 focus:outline-none focus:border-[#FF5E3A] focus:ring-2 focus:ring-[#FF5E3A]/25 transition-all shadow-inner"
+              className="w-full bg-[#0b1120] text-white placeholder-stone-400 text-lg sm:text-xl pl-14 pr-12 py-3.5 rounded-2xl border border-white/15 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/25 transition-all shadow-inner"
             />
             {query && (
               <button
@@ -167,7 +167,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all ${
                 activeCategory === cat
-                  ? 'bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white shadow-lg shadow-orange-500/25 font-bold'
+                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/25 font-bold'
                   : 'bg-white/5 text-stone-400 hover:text-white hover:bg-white/10 border border-white/5'
               }`}
             >
@@ -298,8 +298,8 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
                         {/* Top Badges */}
                         <div className="absolute top-2 left-2 flex flex-wrap gap-1">
                           {item.isOriginal && (
-                            <span className="px-1.5 py-0.5 text-[9px] font-black rounded bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
-                              HOTSTARX
+                            <span className="px-1.5 py-0.5 text-[9px] font-black rounded bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-sm">
+                              PRIMEX
                             </span>
                           )}
                           {item.isLive && (

@@ -27,7 +27,7 @@ export const api = {
       sections.push({
         id: 'sec-trending',
         title: 'Trending Now',
-        subtitle: 'The 10 most-watched titles across HotstarX today',
+        subtitle: 'The 10 most-watched titles across PrimeX today',
         isRanked: true,
         isPortrait: true,
         items: pool.filter(item => item.topRank !== undefined).sort((a, b) => (a.topRank || 99) - (b.topRank || 99)).slice(0, 10),
@@ -67,11 +67,11 @@ export const api = {
         ),
       });
 
-      // 5. HotstarX Originals (Widescreen 16:9 Landscape Presentation)
+      // 5. PrimeX Originals (Widescreen 16:9 Landscape Presentation)
       sections.push({
         id: 'sec-originals',
-        title: 'HotstarX Originals',
-        subtitle: 'Award-winning prestige narratives produced exclusively by HotstarX',
+        title: 'PrimeX Originals',
+        subtitle: 'Award-winning prestige narratives produced exclusively by PrimeX',
         isPortrait: false,
         viewAllRoute: '/originals',
         items: pool.filter(item => item.isOriginal),

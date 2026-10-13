@@ -24,7 +24,7 @@ const FAQS: FAQItem[] = [
     id: 'faq-4k',
     topic: '4K requirements',
     question: 'What are the 4K Ultra HD streaming requirements?',
-    answer: 'To stream in 4K Ultra HD on HotstarX, you need a Max Ultra active subscription plan, an Ultra HD-compatible display (TV or monitor with HDCP 2.2 support), and a stable internet connection with continuous download speeds of 25 Mbps or higher.'
+    answer: 'To stream in 4K Ultra HD on PrimeX, you need a Max Ultra active subscription plan, an Ultra HD-compatible display (TV or monitor with HDCP 2.2 support), and a stable internet connection with continuous download speeds of 25 Mbps or higher.'
   },
   {
     id: 'faq-dolby',
@@ -36,7 +36,7 @@ const FAQS: FAQItem[] = [
     id: 'faq-tvs',
     topic: 'Supported Smart TVs',
     question: 'Which Smart TVs and streaming devices are supported?',
-    answer: 'HotstarX is certified on Android TV (v9+), Google TV, Apple TV 4K (tvOS 15+), LG Smart TVs with webOS (2020 and later), Samsung TVs with Tizen OS (2020 and later), and Amazon Fire TV Stick 4K Max.'
+    answer: 'PrimeX is certified on Android TV (v9+), Google TV, Apple TV 4K (tvOS 15+), LG Smart TVs with webOS (2020 and later), Samsung TVs with Tizen OS (2020 and later), and Amazon Fire TV Stick 4K Max.'
   },
   {
     id: 'faq-latency',
@@ -54,13 +54,13 @@ const FAQS: FAQItem[] = [
     id: 'faq-account',
     topic: 'Account problems',
     question: 'How do I resolve account login or profile problems?',
-    answer: 'If you encounter issues accessing your profile, navigate to the Sign In modal and choose "Sign in with 4-Digit OTP" for instant passwordless verification. You can also switch between Personal and Kids profiles anytime from the profile avatar menu.'
+    answer: 'If you encounter issues accessing your profile, navigate to the Sign In modal and log in with your registered email and password. You can also switch between Personal and Kids profiles anytime from the profile avatar menu.'
   },
   {
     id: 'faq-subscription',
     topic: 'Subscription',
     question: 'How does billing and plan cancellation work?',
-    answer: 'HotstarX subscriptions are billed on a recurring monthly or annual basis. You can upgrade, downgrade, or cancel auto-renewal anytime in the Plans section without cancellation fees. Annual plans include a built-in 20% discount.'
+    answer: 'PrimeX subscriptions are billed on a recurring monthly or annual basis. You can upgrade, downgrade, or cancel auto-renewal anytime in the Plans section without cancellation fees. Annual plans include a built-in 20% discount.'
   },
   {
     id: 'faq-playback',
@@ -117,9 +117,9 @@ export const HelpPage: React.FC = () => {
         
         {/* Banner */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00C2FF]/10 text-[#00C2FF] text-xs font-bold border border-[#00C2FF]/20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>HotstarX Help Center</span>
+            <span>PrimeX Help Center</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black font-['Outfit'] text-white tracking-tight">
@@ -138,17 +138,17 @@ export const HelpPage: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search 4K requirements, Dolby Atmos, latency..."
-              className="w-full bg-[#0B1422] text-white pl-12 pr-4 py-3.5 rounded-2xl border border-white/10 focus:outline-none focus:border-[#00C2FF] shadow-inner text-sm"
+              className="w-full bg-[#070e1c] text-white pl-12 pr-4 py-3.5 rounded-2xl border border-white/10 focus:outline-none focus:border-cyan-400 shadow-inner text-sm"
             />
           </div>
         </div>
 
         {/* System Status Panel (Fictional Demo Status Information) */}
-        <div className="mb-10 rounded-2xl bg-[#0B1422] border border-white/10 p-5">
+        <div className="mb-10 rounded-2xl bg-[#070e1c] border border-white/10 p-5">
           <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/5">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
-              <Activity className="w-4 h-4 text-[#00C2FF]" />
-              <span>HotstarX System Status Panel (Live Demo)</span>
+              <Activity className="w-4 h-4 text-cyan-400" />
+              <span>PrimeX System Status Panel (Live Demo)</span>
             </div>
             <span className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />

@@ -341,7 +341,7 @@ export const AVATAR_PRESETS: AvatarPreset[] = [
   // Neutral Presets
   {
     id: 'neutral-1',
-    name: 'HotstarX Luminary',
+    name: 'PrimeX Luminary',
     category: 'neutral',
     dataUri: createSvgDataUri(SVG_NEUTRAL_1),
     description: 'Cinematic cyan & cobalt signature emblem',

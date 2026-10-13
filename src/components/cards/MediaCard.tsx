@@ -39,13 +39,13 @@ export const MediaCard: React.FC<MediaCardProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => openDetails(item)}
     >
-      {/* Top 10 Styled Rank Badge on the Side */}
+      {/* Top 10 Styled Rank Badge on the Side with Cyan Accent */}
       {rank && (
         <div className="absolute -left-3 -bottom-2 z-20 pointer-events-none select-none">
           <span
             className="text-6xl sm:text-7xl font-black font-['Outfit'] italic tracking-tighter text-transparent drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)]"
             style={{
-              WebkitTextStroke: '2px #FF5E3A',
+              WebkitTextStroke: '2px #00F2FE',
             }}
           >
             {rank}
@@ -53,13 +53,13 @@ export const MediaCard: React.FC<MediaCardProps> = ({
         </div>
       )}
 
-      {/* Main Card Container with Desktop Hover Transform: scale(1.04) translateY(-4px) */}
+      {/* Main Card Container with Desktop Hover Transform */}
       <div
-        className={`relative overflow-hidden rounded-xl sm:rounded-2xl bg-[#0b1120] border border-white/10 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:border-white/30 group-hover/card:shadow-[0_16px_36px_rgba(0,0,0,0.9),0_0_20px_rgba(255,94,58,0.15)] group-hover/card:scale-[1.04] group-hover/card:-translate-y-1 group-hover/card:brightness-105 will-change-transform ${
+        className={`relative overflow-hidden rounded-xl sm:rounded-2xl bg-[#070e1c] border border-white/10 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:border-cyan-400/50 group-hover/card:shadow-[0_16px_36px_rgba(0,0,0,0.9),0_0_24px_rgba(6,182,212,0.22)] group-hover/card:scale-[1.04] group-hover/card:-translate-y-1 group-hover/card:brightness-105 will-change-transform ${
           rank ? 'ml-4' : ''
         }`}
       >
-        {/* Media Thumbnail with smooth zoom: scale 1 -> 1.06 */}
+        {/* Media Thumbnail with smooth zoom */}
         <div className={`relative overflow-hidden bg-[#030712] ${isPortrait ? 'aspect-[2/3]' : 'aspect-video'}`}>
           <img
             src={isPortrait ? item.poster : item.backdrop}
@@ -70,17 +70,17 @@ export const MediaCard: React.FC<MediaCardProps> = ({
           />
 
           {/* Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/20 to-transparent opacity-60 group-hover/card:opacity-85 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070e1c] via-[#070e1c]/20 to-transparent opacity-60 group-hover/card:opacity-85 transition-opacity duration-300" />
 
           {/* Top Badges */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none z-10">
             {item.isOriginal && (
-              <span className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white shadow-md">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-violet-500 text-black shadow-md">
                 ORIGINAL
               </span>
             )}
             {item.isNew && !item.isOriginal && (
-              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase bg-amber-500 text-black shadow-md">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase bg-cyan-400 text-black shadow-md">
                 NEW
               </span>
             )}
@@ -94,7 +94,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
             <div className="absolute bottom-0 inset-x-0 z-20">
               <div className="h-1 bg-white/20 w-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-[#FF5E3A] to-[#C026D3] rounded-r"
+                  className="h-full bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] rounded-r"
                   style={{ width: `${progress.progressPercent}%` }}
                 />
               </div>
@@ -115,7 +115,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
                   e.stopPropagation();
                   openPlayer(item);
                 }}
-                className="p-2.5 rounded-full bg-white text-black hover:bg-[#FF5E3A] hover:text-white hover:scale-110 active:scale-95 transition-all duration-200 shadow-lg shadow-white/20"
+                className="p-2.5 rounded-full bg-cyan-400 text-black hover:bg-white hover:scale-110 active:scale-95 transition-all duration-200 shadow-lg shadow-cyan-500/30 font-bold"
                 aria-label={`Play ${item.title}`}
               >
                 <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
@@ -129,12 +129,12 @@ export const MediaCard: React.FC<MediaCardProps> = ({
                 }}
                 className={`p-2 rounded-full border backdrop-blur-md hover:scale-110 active:scale-95 transition-all duration-200 ${
                   inList
-                    ? 'bg-[#FF5E3A]/20 border-[#FF5E3A] text-[#FF5E3A]'
+                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
                     : 'bg-black/60 border-white/20 text-white hover:bg-white/20'
                 }`}
                 aria-label={inList ? 'Remove from My List' : 'Add to My List'}
               >
-                {inList ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                {inList ? <Check className="w-3.5 h-3.5 text-cyan-300" /> : <Plus className="w-3.5 h-3.5" />}
               </button>
 
               {/* Details Modal Trigger */}
@@ -146,14 +146,14 @@ export const MediaCard: React.FC<MediaCardProps> = ({
                 className="p-2 rounded-full bg-black/60 border border-white/20 text-stone-300 hover:text-white hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-200 ml-auto"
                 aria-label="View Details"
               >
-                <Info className="w-3.5 h-3.5" />
+                <Info className="w-3.5 h-3.5 text-cyan-400" />
               </button>
             </div>
 
             {/* Quick Metadata on Hover */}
             <div className="space-y-0.5">
               <div className="flex items-center gap-1.5 text-[10px] font-semibold text-stone-300">
-                <span className="text-amber-400 font-bold">{item.matchPercentage}% Match</span>
+                <span className="text-emerald-400 font-bold">{item.matchPercentage}% Match</span>
                 <span>•</span>
                 <span>{item.duration}</span>
                 <span>•</span>
@@ -168,14 +168,14 @@ export const MediaCard: React.FC<MediaCardProps> = ({
 
         {/* Card Footer (Visible when not hovering or on mobile) */}
         <div className="p-2 sm:p-2.5">
-          <h3 className="text-xs sm:text-sm font-bold text-stone-100 truncate group-hover/card:text-[#FF5E3A] transition-colors">
+          <h3 className="text-xs sm:text-sm font-bold text-stone-100 truncate group-hover/card:text-cyan-400 transition-colors">
             {item.title}
           </h3>
 
           <div className="flex items-center justify-between text-[10px] text-stone-400 mt-1">
             <span className="truncate">{item.genre[0]}</span>
             {progress ? (
-              <span className="text-[#FF5E3A] font-medium">
+              <span className="text-cyan-400 font-medium">
                 {progress.progressPercent}% watched
               </span>
             ) : (

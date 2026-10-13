@@ -60,7 +60,7 @@ export const PlanCheckoutModal: React.FC<PlanCheckoutModalProps> = ({
           <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
           <div>
             <span className="font-bold">Simulated Sandbox Checkout: </span>
-            <span>No real charges will occur. This is a demonstration of the HotstarX plan subscription workflow.</span>
+            <span>No real charges will occur. This is a demonstration of the PrimeX plan subscription workflow.</span>
           </div>
         </div>
 
@@ -70,7 +70,7 @@ export const PlanCheckoutModal: React.FC<PlanCheckoutModalProps> = ({
             <div className="flex items-center gap-1.5 mb-1">
               <Sparkles className="w-4 h-4 text-cyan-400" />
               <span className="text-xs uppercase font-black tracking-wider text-cyan-400">
-                HotstarX {plan.name}
+                PrimeX {plan.name}
               </span>
             </div>
             <h3 className="text-xl font-bold text-white">

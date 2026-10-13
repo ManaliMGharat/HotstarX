@@ -21,7 +21,7 @@ export const createPersonalProfile = (
   genderPreference: GenderPreference = 'unspecified',
   customAvatarUrl?: string
 ): UserProfile => {
-  const cleanName = name.trim() || 'HotstarX User';
+  const cleanName = name.trim() || 'PrimeX User';
   const resolvedAvatar = resolveUserAvatar({
     genderPreference,
     customAvatarUrl,

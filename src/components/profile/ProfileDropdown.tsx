@@ -64,10 +64,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isOpen, onClos
         className="absolute right-0 top-full mt-3 w-72 rounded-2xl bg-[#0B1422]/98 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
       >
         <div className="p-4 border-b border-white/5 bg-[#050B14]/80 text-center space-y-1.5">
-          <div className="w-10 h-10 rounded-full bg-[#00C2FF]/10 text-[#00C2FF] flex items-center justify-center mx-auto mb-2">
+          <div className="w-10 h-10 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center mx-auto mb-2 border border-cyan-500/20">
             <User className="w-5 h-5" />
           </div>
-          <h3 className="text-sm font-bold text-white">Welcome to HotstarX</h3>
+          <h3 className="text-sm font-bold text-white">Welcome to PrimeX</h3>
           <p className="text-xs text-slate-400 leading-relaxed">
             Sign in to access your personal watchlist, resume playback, and unlock plans.
           </p>
@@ -79,7 +79,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isOpen, onClos
               openAuthModal('signin');
               onClose();
             }}
-            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#00C2FF] to-[#6366F1] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#00C2FF]/20 hover:opacity-95 transition-opacity"
+            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 hover:opacity-95 transition-opacity"
           >
             <LogIn className="w-4 h-4" />
             <span>Sign In</span>
@@ -92,7 +92,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isOpen, onClos
             }}
             className="w-full py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-2 transition-colors"
           >
-            <UserPlus className="w-4 h-4 text-[#00C2FF]" />
+            <UserPlus className="w-4 h-4 text-cyan-400" />
             <span>Create Account</span>
           </button>
         </div>

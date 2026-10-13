@@ -73,7 +73,7 @@ export const VideoPlayerModal: React.FC = () => {
       setDuration(0);
       setBufferedPercent(0);
     }
-  }, [activeMedia?.id, activeEpisode?.id, isPlayerOpen, catalogEntry?.videoUrl]);
+  }, [activeMedia, activeEpisode, isPlayerOpen, catalogEntry?.videoUrl]);
 
   // Handle video playback errors - never silently play a different movie
   const handleVideoError = useCallback(() => {
@@ -84,10 +84,9 @@ export const VideoPlayerModal: React.FC = () => {
     );
   }, [activeTitle]);
 
-  // Initialize playback position from localStorage (strictly guarded by content & episode identity)
+  // Initialize playback position from localStorage
   useEffect(() => {
     if (activeMedia && isPlayerOpen) {
-      // Do not resume stale progress for sports matches or demo streams
       const isSportsMatch = activeMedia.category === 'sports';
       if (isSportsMatch) return;
 
@@ -105,9 +104,9 @@ export const VideoPlayerModal: React.FC = () => {
         }
       }
     }
-  }, [activeMedia?.id, activeEpisode?.id, isPlayerOpen, getProgress, showToast]);
+  }, [activeMedia, activeEpisode, isPlayerOpen, getProgress, showToast]);
 
-  // Save progress periodically to localStorage (every 2.5 seconds, only if playing and no error)
+  // Save progress periodically to localStorage
   useEffect(() => {
     if (!activeMedia || !isPlayerOpen || duration <= 0 || playbackError) return;
     const interval = setInterval(() => {
@@ -139,6 +138,41 @@ export const VideoPlayerModal: React.FC = () => {
     return () => document.removeEventListener('fullscreenchange', handleFsChange);
   }, []);
 
+  const togglePlay = useCallback(() => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  const seekBy = useCallback((seconds: number) => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = Math.min(
+      videoRef.current.duration || 0,
+      Math.max(0, videoRef.current.currentTime + seconds)
+    );
+  }, []);
+
+  const toggleFullscreen = useCallback(() => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => console.warn(err));
+    } else {
+      document.exitFullscreen().catch((err) => console.warn(err));
+    }
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    if (!videoRef.current) return;
+    const nextMute = !isMuted;
+    videoRef.current.muted = nextMute;
+    setIsMuted(nextMute);
+  }, [isMuted]);
+
   // Keyboard navigation
   useEffect(() => {
     if (!isPlayerOpen) return;
@@ -166,26 +200,7 @@ export const VideoPlayerModal: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPlayerOpen, isPlaying]);
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const seekBy = (seconds: number) => {
-    if (!videoRef.current) return;
-    videoRef.current.currentTime = Math.min(
-      videoRef.current.duration || 0,
-      Math.max(0, videoRef.current.currentTime + seconds)
-    );
-  };
+  }, [isPlayerOpen, togglePlay, seekBy, toggleFullscreen, toggleMute, closePlayer]);
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetTime = parseFloat(e.target.value);
@@ -216,22 +231,6 @@ export const VideoPlayerModal: React.FC = () => {
     setIsMuted(newVol === 0);
   };
 
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    const nextMute = !isMuted;
-    videoRef.current.muted = nextMute;
-    setIsMuted(nextMute);
-  };
-
-  const toggleFullscreen = () => {
-    if (!containerRef.current) return;
-    if (!document.fullscreenElement) {
-      containerRef.current.requestFullscreen().catch((err) => console.warn(err));
-    } else {
-      document.exitFullscreen().catch((err) => console.warn(err));
-    }
-  };
-
   const changeSpeed = (speed: number) => {
     setPlaybackSpeed(speed);
     if (videoRef.current) {
@@ -260,7 +259,6 @@ export const VideoPlayerModal: React.FC = () => {
       }
     }
 
-    // Otherwise play next recommended title within same category or matching genre
     const relatedItem = CATALOG.find(
       item => item.id !== activeMedia.id && (item.category === activeMedia.category || item.genre.some(g => activeMedia.genre.includes(g)))
     );
@@ -349,7 +347,7 @@ export const VideoPlayerModal: React.FC = () => {
       {subtitlesEnabled && isPlaying && activeSubtitle !== 'Off' && !playbackError && (
         <div className="absolute bottom-24 inset-x-0 z-30 pointer-events-none flex justify-center px-4">
           <p className="px-4 py-1.5 rounded-lg bg-black/85 text-white font-medium text-sm sm:text-base md:text-lg tracking-wide shadow-2xl border border-white/10 backdrop-blur-md">
-            [HotstarX Audio Description • {activeSubtitle}]
+            [PrimeX Audio Description • {activeSubtitle}]
           </p>
         </div>
       )}
@@ -357,7 +355,7 @@ export const VideoPlayerModal: React.FC = () => {
       {/* Loading Spinner */}
       {isLoading && !playbackError && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-          <div className="w-16 h-16 rounded-full border-4 border-[#00C2FF]/20 border-t-[#00C2FF] animate-spin" />
+          <div className="w-16 h-16 rounded-full border-4 border-cyan-400/20 border-t-cyan-400 animate-spin" />
         </div>
       )}
 
@@ -381,7 +379,7 @@ export const VideoPlayerModal: React.FC = () => {
                   videoRef.current.play().catch(() => {});
                 }
               }}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00C2FF] to-[#6366F1] text-white text-xs font-bold shadow-lg shadow-[#00C2FF]/20 hover:opacity-90 transition-opacity flex items-center gap-2"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-violet-500 text-black text-xs font-bold shadow-lg shadow-cyan-500/20 hover:opacity-90 transition-opacity flex items-center gap-2"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Retry Playback</span>
@@ -396,7 +394,7 @@ export const VideoPlayerModal: React.FC = () => {
         </div>
       )}
 
-      {/* Top Header Bar (Title & Close Button) */}
+      {/* Top Header Bar */}
       <div
         className={`absolute top-0 inset-x-0 z-40 p-4 sm:p-6 bg-gradient-to-b from-black/90 via-black/40 to-transparent flex items-center justify-between transition-opacity duration-300 ${
           showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -421,7 +419,7 @@ export const VideoPlayerModal: React.FC = () => {
               {activeTitle}
             </h2>
             <div className="flex items-center gap-2 text-xs text-slate-300 flex-wrap">
-              <span className="text-[#00C2FF] font-semibold">{quality}</span>
+              <span className="text-cyan-400 font-semibold">{quality}</span>
               <span>•</span>
               <span>{activeMedia.ageRating}</span>
               <span>•</span>
@@ -457,9 +455,9 @@ export const VideoPlayerModal: React.FC = () => {
         </div>
 
         {/* Brand Badge */}
-        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00C2FF]/20 text-[#00C2FF] border border-[#00C2FF]/30 text-xs font-bold font-['Outfit']">
-          <Sparkles className="w-3.5 h-3.5 text-[#00C2FF]" />
-          <span>HotstarX Cinema</span>
+        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-xs font-bold font-['Outfit']">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+          <span>PrimeX Cinema • Powered by XQORA</span>
         </div>
       </div>
 
@@ -478,7 +476,7 @@ export const VideoPlayerModal: React.FC = () => {
           {/* Hover Timestamp Tooltip */}
           {hoverTime !== null && (
             <div 
-              className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 rounded bg-[#091526] text-white text-[11px] font-mono font-bold shadow-xl border border-white/20 pointer-events-none z-30"
+              className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 rounded bg-[#070e1c] text-white text-[11px] font-mono font-bold shadow-xl border border-cyan-500/40 pointer-events-none z-30"
               style={{ left: `${hoverPosition}%` }}
             >
               {formatTime(hoverTime)}
@@ -492,9 +490,9 @@ export const VideoPlayerModal: React.FC = () => {
               className="absolute top-0 bottom-0 left-0 bg-white/30 transition-all duration-300"
               style={{ width: `${bufferedPercent}%` }}
             />
-            {/* Play progress */}
+            {/* Play progress in electric cyan-violet gradient */}
             <div 
-              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3]"
+              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6]"
               style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
             />
           </div>
@@ -517,7 +515,7 @@ export const VideoPlayerModal: React.FC = () => {
           <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={togglePlay}
-              className="p-2 sm:p-2.5 rounded-full bg-white text-black hover:bg-[#FF5E3A] hover:text-white transition-all hover:scale-110 active:scale-95 shadow-lg"
+              className="p-2 sm:p-2.5 rounded-full bg-cyan-400 text-black hover:bg-white transition-all hover:scale-110 active:scale-95 shadow-lg shadow-cyan-500/25"
               aria-label={isPlaying ? 'Pause (Space)' : 'Play (Space)'}
             >
               {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
@@ -544,7 +542,7 @@ export const VideoPlayerModal: React.FC = () => {
             {/* Next Episode Button */}
             <button
               onClick={playNextEpisode}
-              className="p-2 text-stone-300 hover:text-[#FF5E3A] hover:bg-white/10 rounded-full transition-colors"
+              className="p-2 text-stone-300 hover:text-cyan-400 hover:bg-white/10 rounded-full transition-colors"
               aria-label="Next Episode"
               title="Next Episode"
             >
@@ -567,7 +565,7 @@ export const VideoPlayerModal: React.FC = () => {
                 step="0.05"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-16 sm:w-20 h-1 rounded-lg appearance-none cursor-pointer bg-white/20 accent-[#FF5E3A] focus:outline-none"
+                className="w-16 sm:w-20 h-1 rounded-lg appearance-none cursor-pointer bg-white/20 accent-cyan-400 focus:outline-none"
                 aria-label="Volume Level"
               />
             </div>
@@ -591,7 +589,7 @@ export const VideoPlayerModal: React.FC = () => {
                 }}
                 className={`p-2 rounded-xl transition-all ${
                   subtitlesEnabled && activeSubtitle !== 'Off'
-                    ? 'text-[#FF5E3A] bg-[#FF5E3A]/20'
+                    ? 'text-cyan-400 bg-cyan-500/20'
                     : 'text-stone-300 hover:text-white hover:bg-white/10'
                 }`}
                 aria-label="Subtitles & Audio"
@@ -601,9 +599,9 @@ export const VideoPlayerModal: React.FC = () => {
               </button>
 
               {showSubtitlesMenu && (
-                <div className="absolute right-0 bottom-full mb-3 w-56 rounded-2xl bg-[#180b2a] border border-orange-500/20 p-3 shadow-2xl z-50 text-xs space-y-2">
+                <div className="absolute right-0 bottom-full mb-3 w-56 rounded-2xl bg-[#070e1c] border border-cyan-500/30 p-3 shadow-2xl z-50 text-xs space-y-2">
                   <div>
-                    <div className="font-bold text-white px-1 mb-1 text-[11px] uppercase tracking-wider text-stone-400">
+                    <div className="font-bold text-white px-1 mb-1 text-[11px] uppercase tracking-wider text-slate-400">
                       Subtitles
                     </div>
                     {['English', 'Hindi', 'Tamil', 'Telugu', 'Off'].map((lang) => (
@@ -619,18 +617,18 @@ export const VideoPlayerModal: React.FC = () => {
                           }
                           setShowSubtitlesMenu(false);
                         }}
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-stone-300 hover:bg-white/5 hover:text-white"
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white"
                       >
                         <span>{lang}</span>
                         {activeSubtitle === lang && (
-                          <Check className="w-3.5 h-3.5 text-[#FF5E3A]" />
+                          <Check className="w-3.5 h-3.5 text-cyan-400" />
                         )}
                       </button>
                     ))}
                   </div>
 
                   <div className="border-t border-white/5 pt-2">
-                    <div className="font-bold text-white px-1 mb-1 text-[11px] uppercase tracking-wider text-stone-400">
+                    <div className="font-bold text-white px-1 mb-1 text-[11px] uppercase tracking-wider text-slate-400">
                       Audio Stream
                     </div>
                     {['Original (Dolby Atmos)', 'Hindi (Dolby 5.1)', 'Tamil (Stereo)'].map((aud) => (
@@ -640,10 +638,10 @@ export const VideoPlayerModal: React.FC = () => {
                           setActiveAudioLang(aud);
                           setShowSubtitlesMenu(false);
                         }}
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-stone-300 hover:bg-white/5 hover:text-white text-[11px]"
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white text-[11px]"
                       >
                         <span>{aud}</span>
-                        {activeAudioLang === aud && <Check className="w-3.5 h-3.5 text-[#FF5E3A]" />}
+                        {activeAudioLang === aud && <Check className="w-3.5 h-3.5 text-cyan-400" />}
                       </button>
                     ))}
                   </div>
@@ -659,7 +657,7 @@ export const VideoPlayerModal: React.FC = () => {
                   setShowSubtitlesMenu(false);
                 }}
                 className={`p-2 rounded-xl transition-all ${
-                  showSettingsMenu ? 'text-[#FF5E3A] bg-[#FF5E3A]/20' : 'text-stone-300 hover:text-white hover:bg-white/10'
+                  showSettingsMenu ? 'text-cyan-400 bg-cyan-500/20' : 'text-stone-300 hover:text-white hover:bg-white/10'
                 }`}
                 aria-label="Playback Settings"
                 title="Settings"
@@ -668,9 +666,9 @@ export const VideoPlayerModal: React.FC = () => {
               </button>
 
               {showSettingsMenu && (
-                <div className="absolute right-0 bottom-full mb-3 w-56 rounded-2xl bg-[#180b2a] border border-orange-500/20 p-3 shadow-2xl z-50 text-xs space-y-3">
+                <div className="absolute right-0 bottom-full mb-3 w-56 rounded-2xl bg-[#070e1c] border border-cyan-500/30 p-3 shadow-2xl z-50 text-xs space-y-3">
                   <div>
-                    <span className="font-bold text-white px-1 block mb-1 text-[11px] uppercase tracking-wider text-stone-400">Video Quality</span>
+                    <span className="font-bold text-white px-1 block mb-1 text-[11px] uppercase tracking-wider text-slate-400">Video Quality</span>
                     {['Auto', '4K Ultra HD', '1080p Full HD', '720p HD'].map((q) => (
                       <button
                         key={q}
@@ -678,16 +676,16 @@ export const VideoPlayerModal: React.FC = () => {
                           setQuality(q);
                           setShowSettingsMenu(false);
                         }}
-                        className="w-full flex items-center justify-between px-2 py-1 rounded-lg text-stone-300 hover:bg-white/5 hover:text-white"
+                        className="w-full flex items-center justify-between px-2 py-1 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white"
                       >
                         <span>{q}</span>
-                        {quality === q && <Check className="w-3.5 h-3.5 text-[#FF5E3A]" />}
+                        {quality === q && <Check className="w-3.5 h-3.5 text-cyan-400" />}
                       </button>
                     ))}
                   </div>
 
                   <div className="border-t border-white/5 pt-2">
-                    <span className="font-bold text-white px-1 block mb-1 text-[11px] uppercase tracking-wider text-stone-400">Speed</span>
+                    <span className="font-bold text-white px-1 block mb-1 text-[11px] uppercase tracking-wider text-slate-400">Speed</span>
                     <div className="grid grid-cols-4 gap-1">
                       {[0.75, 1, 1.25, 1.5].map((spd) => (
                         <button
@@ -695,7 +693,7 @@ export const VideoPlayerModal: React.FC = () => {
                           onClick={() => changeSpeed(spd)}
                           className={`py-1 rounded text-center font-mono ${
                             playbackSpeed === spd
-                              ? 'bg-[#FF5E3A]/20 text-[#FF5E3A] font-bold border border-[#FF5E3A]'
+                              ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-400'
                               : 'bg-white/5 text-stone-300 hover:bg-white/10'
                           }`}
                         >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { 
   Search as SearchIcon, 
@@ -27,6 +27,7 @@ export const SearchPage: React.FC = () => {
   const initialQuery = searchParams.get('q') || '';
   const [query, setQuery] = useState(initialQuery);
   const [activeCategory, setActiveCategory] = useState('All');
+  const debounceTimerRef = useRef<number | null>(null);
   
   const { isKidsMode } = useAuth();
   const { isInWatchlist, toggleWatchlist } = useWatchlist();
@@ -34,25 +35,33 @@ export const SearchPage: React.FC = () => {
   const { openDetails } = useDetailsModal();
   const { t } = useLanguage();
 
-  // Sync state if URL changes
-  useEffect(() => {
-    const q = searchParams.get('q') || '';
-    if (q !== query) {
-      setQuery(q);
-    }
-  }, [searchParams]);
-
   const handleQueryChange = (val: string) => {
     setQuery(val);
-    if (val) {
-      setSearchParams({ q: val }, { replace: true });
-    } else {
-      setSearchParams({}, { replace: true });
+    if (debounceTimerRef.current) {
+      window.clearTimeout(debounceTimerRef.current);
     }
+    debounceTimerRef.current = window.setTimeout(() => {
+      if (val.trim()) {
+        setSearchParams({ q: val.trim() }, { replace: true });
+      } else {
+        setSearchParams({}, { replace: true });
+      }
+    }, 250);
   };
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        window.clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleClear = () => {
     setQuery('');
+    if (debounceTimerRef.current) {
+      window.clearTimeout(debounceTimerRef.current);
+    }
     setSearchParams({}, { replace: true });
   };
 
@@ -98,29 +107,29 @@ export const SearchPage: React.FC = () => {
         {/* Header Title & Subtitle */}
         <div>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white flex items-center gap-3">
-            <SearchIcon className="w-8 h-8 text-[#FF5E3A]" />
-            <span>{t('search', 'Search HotstarX Catalog')}</span>
+            <SearchIcon className="w-8 h-8 text-cyan-400" />
+            <span>{t('search', 'Search PrimeX Catalog')}</span>
           </h1>
-          <p className="text-sm text-stone-400 mt-1">
-            Discover thousands of movies, exclusive series, live sporting tournaments, and 4K documentaries.
+          <p className="text-sm text-slate-400 mt-1">
+            Discover thousands of movies, exclusive series, live sporting tournaments, and 4K documentaries. Powered by XQORA.
           </p>
         </div>
 
         {/* Search Bar Input */}
         <div className="relative flex items-center max-w-4xl">
-          <SearchIcon className="absolute left-5 w-6 h-6 text-[#FF5E3A] pointer-events-none" />
+          <SearchIcon className="absolute left-5 w-6 h-6 text-cyan-400 pointer-events-none" />
           <input
             type="text"
             value={query}
             onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Search by title, genre, actor, or director (e.g. Neon City, Sci-Fi, Cricket)..."
-            className="w-full bg-[#180b2a] text-white placeholder-stone-500 text-base sm:text-lg pl-14 pr-12 py-4 rounded-2xl border border-orange-500/25 focus:outline-none focus:border-[#FF5E3A] focus:ring-2 focus:ring-[#FF5E3A]/20 shadow-xl transition-all"
+            className="w-full bg-[#070e1c] text-white placeholder-slate-500 text-base sm:text-lg pl-14 pr-12 py-4 rounded-2xl border border-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 shadow-xl transition-all"
             autoFocus
           />
           {query && (
             <button
               onClick={handleClear}
-              className="absolute right-4 p-2 text-stone-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
+              className="absolute right-4 p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
               aria-label="Clear search query"
             >
               <X className="w-5 h-5" />
@@ -130,8 +139,8 @@ export const SearchPage: React.FC = () => {
 
         {/* Category Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-stone-400 uppercase tracking-wider mr-2 shrink-0">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#FF5E3A]" />
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2 shrink-0">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400" />
             <span>Filters:</span>
           </div>
           {CATEGORY_TABS.map((cat) => (
@@ -140,8 +149,8 @@ export const SearchPage: React.FC = () => {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shrink-0 transition-all ${
                 activeCategory === cat
-                  ? 'bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white shadow-lg shadow-orange-500/25 font-bold'
-                  : 'bg-[#180b2a] text-stone-400 hover:text-white hover:bg-white/5 border border-white/5'
+                  ? 'bg-gradient-to-r from-cyan-400 via-sky-500 to-violet-600 text-black shadow-lg shadow-cyan-500/25 font-extrabold'
+                  : 'bg-[#070e1c] text-slate-400 hover:text-white hover:bg-white/5 border border-white/5'
               }`}
             >
               {cat}
@@ -151,9 +160,9 @@ export const SearchPage: React.FC = () => {
 
         {/* Trending Suggestions */}
         {!query && (
-          <div className="p-4 rounded-2xl bg-[#0B1422]/60 border border-white/5">
+          <div className="p-4 rounded-2xl bg-[#070e1c]/80 border border-cyan-500/20">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-              <Flame className="w-4 h-4 text-amber-400" />
+              <Flame className="w-4 h-4 text-cyan-400" />
               <span>Trending Searches</span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -175,14 +184,14 @@ export const SearchPage: React.FC = () => {
           <div className="text-sm font-semibold text-slate-300">
             {query ? (
               <span>
-                Found <span className="text-[#00C2FF] font-bold">{filteredContent.length}</span> results for &ldquo;{query}&rdquo;
+                Found <span className="text-cyan-400 font-bold">{filteredContent.length}</span> results for &ldquo;{query}&rdquo;
               </span>
             ) : (
               <span>Showing all available titles ({filteredContent.length})</span>
             )}
           </div>
           {isKidsMode && (
-            <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
               Kids Mode: Family-friendly (U) only
             </span>
           )}
@@ -197,7 +206,7 @@ export const SearchPage: React.FC = () => {
               return (
                 <div
                   key={item.id}
-                  className="group relative bg-[#0B1422] rounded-xl overflow-hidden border border-white/5 hover:border-[#00C2FF]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#00C2FF]/10 flex flex-col cursor-pointer"
+                  className="group relative bg-[#070e1c] rounded-xl overflow-hidden border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col cursor-pointer"
                   onClick={() => openDetails(item)}
                 >
                   {/* Poster Image */}
@@ -211,7 +220,7 @@ export const SearchPage: React.FC = () => {
                     />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1422] via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#070e1c] via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
                     {/* Live / Original / 4K Badges */}
                     <div className="absolute top-2 left-2 flex flex-col gap-1 items-start">
@@ -221,7 +230,7 @@ export const SearchPage: React.FC = () => {
                         </span>
                       )}
                       {item.isOriginal && (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-gradient-to-r from-[#00C2FF] to-[#A855F7] text-white shadow-md">
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-gradient-to-r from-cyan-400 to-violet-500 text-black shadow-md">
                           ORIGINAL
                         </span>
                       )}
@@ -240,7 +249,7 @@ export const SearchPage: React.FC = () => {
                           e.stopPropagation();
                           openPlayer(item);
                         }}
-                        className="p-3 rounded-full bg-gradient-to-r from-[#00C2FF] to-[#6366F1] text-white shadow-xl hover:scale-110 active:scale-95 transition-transform"
+                        className="p-3 rounded-full bg-cyan-400 text-black shadow-xl hover:scale-110 active:scale-95 transition-transform font-bold"
                         aria-label={`Play ${item.title}`}
                       >
                         <Play className="w-5 h-5 fill-current ml-0.5" />
@@ -252,7 +261,7 @@ export const SearchPage: React.FC = () => {
                         }}
                         className={`p-3 rounded-full border transition-transform hover:scale-110 active:scale-95 ${
                           inWatchlist
-                            ? 'bg-amber-500 text-white border-amber-400'
+                            ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400'
                             : 'bg-black/60 text-white border-white/20 hover:border-white'
                         }`}
                         aria-label={inWatchlist ? "Remove from watchlist" : "Add to watchlist"}
@@ -264,7 +273,7 @@ export const SearchPage: React.FC = () => {
                           e.stopPropagation();
                           openDetails(item);
                         }}
-                        className="p-3 rounded-full bg-black/60 text-white border border-white/20 hover:border-white hover:scale-110 active:scale-95 transition-transform"
+                        className="p-3 rounded-full bg-black/60 text-white border border-white/20 hover:border-cyan-400 hover:scale-110 active:scale-95 transition-transform"
                         aria-label="More Information"
                       >
                         <Info className="w-5 h-5" />
@@ -275,7 +284,7 @@ export const SearchPage: React.FC = () => {
                   {/* Card Info */}
                   <div className="p-3 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="font-bold text-sm text-white line-clamp-1 group-hover:text-[#00C2FF] transition-colors">
+                      <h3 className="font-bold text-sm text-white line-clamp-1 group-hover:text-cyan-400 transition-colors">
                         {item.title}
                       </h3>
                       <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-400 font-medium">
@@ -307,7 +316,7 @@ export const SearchPage: React.FC = () => {
             <div className="flex items-center gap-3 pt-2">
               <button
                 onClick={handleClear}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00C2FF] to-[#6366F1] text-white font-semibold text-sm shadow-lg shadow-[#00C2FF]/20 hover:opacity-90 transition-opacity"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-violet-500 text-black font-extrabold text-sm shadow-lg shadow-cyan-500/20 hover:opacity-95 transition-opacity"
               >
                 Clear Search
               </button>

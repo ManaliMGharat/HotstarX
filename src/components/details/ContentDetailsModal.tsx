@@ -104,7 +104,7 @@ export const ContentDetailsModal: React.FC = () => {
                 openPlayer(selectedMedia);
                 closeDetails();
               }}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white font-black text-sm sm:text-base flex items-center gap-2.5 transition-all shadow-xl shadow-orange-500/30 hover:scale-105 active:scale-95"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#00F2FE] via-[#06B6D4] to-[#8B5CF6] text-black font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all shadow-xl shadow-cyan-500/30 hover:scale-105 active:scale-95 hover:brightness-110"
             >
               <Play className="w-5 h-5 fill-current" />
               <span>Watch Now</span>
@@ -114,12 +114,12 @@ export const ContentDetailsModal: React.FC = () => {
               onClick={() => toggleWatchlist(selectedMedia)}
               className={`p-3 rounded-xl border backdrop-blur-md transition-all hover:scale-105 active:scale-95 ${
                 inList
-                  ? 'bg-[#FF5E3A]/20 border-[#FF5E3A] text-[#FF5E3A]'
+                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
                   : 'bg-black/60 border-white/20 text-white hover:bg-black/80'
               }`}
               aria-label={inList ? 'In Watchlist' : 'Add to Watchlist'}
             >
-              {inList ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+              {inList ? <Check className="w-5 h-5 text-cyan-300" /> : <Plus className="w-5 h-5" />}
             </button>
 
             <button
@@ -138,11 +138,11 @@ export const ContentDetailsModal: React.FC = () => {
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               {selectedMedia.isOriginal && (
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#FF5E3A] via-[#F59E0B] to-[#C026D3] text-white">
-                  HOTSTARX ORIGINAL
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-violet-500 text-black">
+                  PRIMEX ORIGINAL
                 </span>
               )}
-              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                 {selectedMedia.matchPercentage}% Match
               </span>
               <span className="px-2 py-0.5 rounded text-xs font-semibold bg-white/10 text-stone-300">
@@ -158,7 +158,7 @@ export const ContentDetailsModal: React.FC = () => {
             </h2>
 
             {selectedMedia.tagline && (
-              <p className="text-sm font-medium text-amber-400 italic mt-1">
+              <p className="text-sm font-medium text-cyan-400 italic mt-1">
                 "{selectedMedia.tagline}"
               </p>
             )}
@@ -180,8 +180,8 @@ export const ContentDetailsModal: React.FC = () => {
               </p>
 
               {/* Audio & Subtitles Info */}
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#0e041a] border border-orange-500/15 text-xs text-stone-300">
-                <Volume2 className="w-4 h-4 text-[#FF5E3A] shrink-0" />
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#070e1c] border border-cyan-500/20 text-xs text-stone-300">
+                <Volume2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <div>
                   <span className="font-semibold text-white">Audio & Subtitles: </span>
                   <span>{selectedMedia.language.join(', ')} • English Audio Description</span>
@@ -190,7 +190,7 @@ export const ContentDetailsModal: React.FC = () => {
             </div>
 
             {/* Cast & Crew Info */}
-            <div className="space-y-3 bg-[#0e041a]/60 p-4 rounded-2xl border border-orange-500/15 text-xs">
+            <div className="space-y-3 bg-[#070e1c]/70 p-4 rounded-2xl border border-cyan-500/20 text-xs">
               {selectedMedia.cast && selectedMedia.cast.length > 0 && (
                 <div>
                   <span className="font-bold text-stone-400 uppercase tracking-wider block mb-1">

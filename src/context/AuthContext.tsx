@@ -173,7 +173,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
     showToast({
       title: 'Plan Updated!',
-      description: `You are now subscribed to the HotstarX ${planName} Plan (${billingCycle}).`,
+      description: `You are now subscribed to the PrimeX ${planName} Plan (${billingCycle}).`,
       type: 'success',
     });
   }, [currentProfile, showToast]);
@@ -192,18 +192,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const cleanIdentifier = emailOrPhone.trim();
     if (!cleanIdentifier) return;
 
-    // Derive display name: use provided name, or derive from email prefix, fallback to 'HotstarX User'
+    // Derive display name: use provided name, or derive from email prefix, fallback to 'PrimeX User'
     let derivedName = userName?.trim();
     if (!derivedName) {
       if (cleanIdentifier.includes('@')) {
         const prefix = cleanIdentifier.split('@')[0];
         derivedName = prefix.charAt(0).toUpperCase() + prefix.slice(1);
       } else {
-        derivedName = 'HotstarX User';
+        derivedName = 'PrimeX User';
       }
     }
 
-    const email = cleanIdentifier.includes('@') ? cleanIdentifier : `${cleanIdentifier}@user.hotstarx`;
+    const email = cleanIdentifier.includes('@') ? cleanIdentifier : `${cleanIdentifier}@user.primex`;
     const accountKey = getAccountProfilesKey(email);
 
     // Look up saved profiles for this specific user account
@@ -269,7 +269,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     showToast({
       title: 'Signed In Successfully',
-      description: `Welcome back, ${derivedName}! Enjoy streaming on HotstarX.`,
+      description: `Welcome back, ${derivedName}! Enjoy streaming on PrimeX.`,
       type: 'success',
     });
   }, [showToast]);
@@ -282,7 +282,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     genderPreference?: GenderPreference;
     customAvatarUrl?: string;
   }) => {
-    const cleanName = details.name.trim() || 'HotstarX User';
+    const cleanName = details.name.trim() || 'PrimeX User';
     const cleanEmail = details.email.trim();
 
     const newProfile = createPersonalProfile(
@@ -309,7 +309,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     showToast({
       title: 'Account Created!',
-      description: `Welcome to HotstarX, ${cleanName}! Start browsing and streaming.`,
+      description: `Welcome to PrimeX, ${cleanName}! Start browsing and streaming.`,
       type: 'success',
     });
   }, [showToast]);
